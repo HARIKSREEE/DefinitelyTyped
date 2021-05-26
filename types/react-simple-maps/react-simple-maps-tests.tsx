@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from 'react-simple-maps';
 
+const filterZoomEvent = (event: any) => event.type === 'wheel';
+
 const Map = () => (
     <ComposableMap
         projectionConfig={{ rotate: [-11, 0, 0], scale: 205 }}
@@ -8,7 +10,7 @@ const Map = () => (
         style={{ height: 'auto', width: '100%' }}
         width={980}
     >
-        <ZoomableGroup center={[0, 20]} disablePanning={true}>
+        <ZoomableGroup center={[0, 20]} disablePanning={true} filterZoomEvent={filterZoomEvent}>
             <Geographies geography="/worldmap.json">
                 {({ geographies }) =>
                     geographies.map((geography, index) => (
